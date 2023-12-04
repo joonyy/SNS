@@ -15,15 +15,29 @@ const userRouter = require('./routes/user');
 const hashtagRouter = require('./routes/hashtag');
 const db = require('./models');
 const passportConfig = require('./passport');
+const {createAgent} = require('@forestadmin/agent');
+const {createSequelizeDataSource} = require('@forestadmin/datasource-sequelize');
+const sequelizeInstance = require('./models');
 
 dotenv.config();
 const app = express();
+
 db.sequelize.sync()
   .then(() => {
     console.log('db 연결 성공');
   })
   .catch(console.error);
 passportConfig();
+
+createAgent({
+  authSecret: process.env.FOREST_AUTH_SECRET,
+  envSecret: process.env.FOREST_ENV_SECRET,
+  isProduction: process.env.NODE_ENV === 'production',
+})
+
+  .addDataSource(createSequelizeDataSource(sequelizeInstance))
+  .mountOnExpress('react-nodebird')
+  .start();
 
 if (process.env.NODE_ENV === 'production') {
   app.use(morgan('combined'));
