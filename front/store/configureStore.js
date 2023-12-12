@@ -6,8 +6,9 @@ import createSagaMiddleware from 'redux-saga';
 import reducer from '../reducers';
 import rootSaga from '../sagas';
 
+// eslint-disable-next-line no-unused-vars
 const loggerMiddleware = ({ dispatch, getState }) => (next) => (action) => {
-  console.log(action);
+  console.log(action);// 로그인 비밀번호 노출창
   return next(action);
 };
 

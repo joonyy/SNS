@@ -26,6 +26,7 @@ module.exports = class User extends Model {
     });
   }
   static associate(db){
+    db.User.hasOne(db.UserAgent);
     db.User.hasMany(db.Post);
     db.User.hasMany(db.Comment);
     db.User.belongsToMany(db.Post, {through:'Like', as :"Liked"})
