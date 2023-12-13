@@ -13,6 +13,7 @@ const postRouter = require('./routes/post');
 const postsRouter = require('./routes/posts');
 const userRouter = require('./routes/user');
 const hashtagRouter = require('./routes/hashtag');
+const checkRouter = require('./routes/check');
 const db = require('./models');
 const passportConfig = require('./passport');
 
@@ -24,6 +25,8 @@ db.sequelize.sync()
   })
   .catch(console.error);
 passportConfig();
+
+app.use('/check',checkRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(morgan('combined'));

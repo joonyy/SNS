@@ -254,17 +254,6 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.addCommentLoading = false;
       draft.addCommentDone = true;
       break;
-      // const postIndex = state.mainPosts.findIndex((v) => v.id === action.data.postId);
-      // const post = { ...state.mainPosts[postIndex] };
-      // post.Comments = [dummyComment(action.data.content), ...post.Comments];
-      // const mainPosts = [...state.mainPosts];
-      // mainPosts[postIndex] = post;
-      // return {
-      //   ...state,
-      //   mainPosts,
-      //   addCommentLoading: false,
-      //   addCommentDone: true,
-      // };
     }
     case ADD_COMMENT_FAILURE:
       draft.addCommentLoading = false;

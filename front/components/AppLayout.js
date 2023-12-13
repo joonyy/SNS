@@ -47,6 +47,9 @@ const AppLayout = ({ children }) => {
         <Col xs={24} md={12}>
           {children}
         </Col>
+        <Col xs={24} md={6}>
+          <a href="http://localhost:3065/check" target="_blank" rel="noreferrer noopener">보안체크</a>
+        </Col>
       </Row>
     </div>
   );
